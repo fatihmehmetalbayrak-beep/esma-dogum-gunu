@@ -339,3 +339,11 @@ h1 {
     h1 { font-size: 2.5rem; }
 
 }
+/* Havai fişek canvas'ı için özel ayar */
+#birthday-canvas {
+    width: 100%;
+    height: 450px; /* Modal yüksekliğine göre ayarlandı */
+    background: #111;
+    border-radius: 15px;
+    display: block;
+}
