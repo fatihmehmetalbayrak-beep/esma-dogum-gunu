@@ -3,7 +3,7 @@ const AYARLAR = {
     sifre: "08.02.06",
     mektupGorseli: "assets/mektup.png", 
     kolajGorseli: "assets/kolaj.png", 
-    sarkiDosyasi: "assets/bizim_sarki.mp3",
+    sarkiDosyasi: "assets/bizim_sarki.mp3.mp3",
     plakGorseli: "assets/plak.jpg", // image_8b5756.png'deki plak dosyası
     gelecekMesajlari: [
         "Seninle dünyayı gezmek istiyorum. 🌍",
@@ -64,10 +64,9 @@ function kutu5Ac() {
     const plak = document.getElementById("plak-img");
     const ikon = document.getElementById("music-icon");
 
-    // Nesne yoksa sadece buraya tıklandığında (kullanıcı etkileşimiyle) oluştur
+    // Eğer müzik çalar henüz oluşturulmadıysa oluştur
     if (!muzikCalar || muzikCalar.src === "") {
         muzikCalar = new Audio(AYARLAR.sarkiDosyasi);
-        muzikCalar.load(); // Dosyayı çekmeye başla
     }
 
     if (muzikCalar.paused) {
@@ -82,8 +81,8 @@ function kutu5Ac() {
                 if (ikon) ikon.innerHTML = "⏸️";
             })
             .catch(error => {
-                console.error("Müzik çalınamadı:", error);
-                alert("Müzik dosyasına ulaşılamıyor. Lütfen assets klasöründeki dosya adını kontrol edin.");
+                console.error("Müzik çalma hatası:", error);
+                alert("Müzik dosyasına ulaşılamıyor. Lütfen GitHub'daki 'assets' klasöründe 'bizim_sarki.mp3.mp3' dosyasının olduğundan emin olun.");
             });
     } else {
         muzikCalar.pause();
@@ -241,5 +240,6 @@ function cicekBahcesiniBaslat(canvas, infoText) {
         if (flowers.length > 50) { flowers.shift(); }
     });
 }
+
 
 
