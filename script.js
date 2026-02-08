@@ -1,14 +1,10 @@
 /* ========================================================================== */
 const AYARLAR = {
     sifre: "08.02.06",
-    // Not: Bu linkler 'Direct Link' olmalıdır. i.ibb.co gibi...
-    mektupGorseli: "https://i.ibb.co/yF0SDmHC/mektup.png", 
-    kolajGorseli: "https://i.ibb.co/TB58nFYk/kolaj.png", 
-    // Google Drive Doğrudan Oynatma Linki:
-    sarkiDosyasi: "https://drive.google.com/uc?export=download&id=1B7_ETxQ7zEkGol6YeLyMpBepI6bNThPz",
-    plakGorseli: "https://i.ibb.co/YFPJRQ2d/plak.jpg",
-    
-    // Eksik olan mesaj listesini geri ekledim:
+    mektupGorseli: "assets/mektup.png", 
+    kolajGorseli: "assets/kolaj.png", 
+    sarkiDosyasi: "assets/bizim_sarki.mp3",
+    plakGorseli: "assets/plak.jpg", // image_8b5756.png'deki plak dosyası
     gelecekMesajlari: [
         "Seninle dünyayı gezmek istiyorum. 🌍",
         "Bu yıl senin yılın olacak. ✨",
@@ -66,17 +62,26 @@ function kutu4Ac() { modalAc("img", AYARLAR.mektupGorseli); }
 function kutu5Ac() {
     const plak = document.getElementById("plak-img");
     const ikon = document.getElementById("music-icon");
-    
-    if (!muzikCaliyorMu) {
-        // Müzik çalmaya başlarken plak görselini senin linkinden çekelim
-        if (plak) {
-            plak.src = AYARLAR.plakGorseli;
-            plak.style.display = "block";
-            plak.classList.add("donen-plak");
-        }
-        muzikCalar.play().catch(e => alert("Müzik linki hatalı veya tarayıcı engelliyor!"));
-        muzikCaliyorMu = true;
-        if (ikon) ikon.innerHTML = "⏸️";
+
+    // Nesne yoksa oluştur ve kaynağı ata
+    if (!muzikCalar) {
+        muzikCalar = new Audio(AYARLAR.sarkiDosyasi);
+    }
+
+    if (muzikCalar.paused) {
+        muzikCalar.play()
+            .then(() => {
+                muzikCaliyorMu = true;
+                if (plak) {
+                    plak.src = AYARLAR.plakGorseli; // Kendi plak görselin
+                    plak.style.display = "block";
+                    plak.classList.add("donen-plak");
+                }
+                if (ikon) ikon.innerHTML = "⏸️";
+            })
+            .catch(error => {
+                console.log("Müzik için bir tıklama bekleniyor:", error);
+            });
     } else {
         muzikCalar.pause();
         muzikCaliyorMu = false;
@@ -233,3 +238,4 @@ function cicekBahcesiniBaslat(canvas, infoText) {
         if (flowers.length > 50) { flowers.shift(); }
     });
 }
+
