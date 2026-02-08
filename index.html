@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İyi ki Doğdun</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="login-screen">
+        <div class="login-box">
+            <h2>Hoş Geldin 💫</h2>
+            <p>Sihirli tarihi girmeni istiyorum…</p>
+            <input type="password" id="password-input" placeholder="Şifre...">
+            <button onclick="sifreyiKontrolEt()">Giriş</button>
+            <p id="error-message">Yanlış şifre! İpucu: Özel bir tarih 😉</p>
+        </div>
+    </div>
+
+    <div id="main-content" class="hidden">
+        <h1>İyi ki Doğdun Esma ❤️</h1>
+        <p class="subtitle">Senin için küçük ama anlamlı sürprizlerim var</p>
+        
+        <div class="grid-container">
+            <div class="card" onclick="kutu1Ac()">
+                <div class="icon">🎉</div>
+                <h3>Sürpriz</h3>
+                <p>Dokun ve başlasın</p>
+            </div>
+
+            <div class="card" onclick="kutu2Ac()">
+                <div class="icon">🌳</div>
+                <h3>Büyüyen Sevgi</h3>
+                <p>Birlikte büyüyor</p>
+                <img id="tree-anim" src="" alt="" style="display:none;">
+            </div>
+
+            <div class="card" onclick="kutu3Ac()">
+                <div class="icon">📸</div>
+                <h3>Anılarımız</h3>
+                <p>Bizden kalanlar</p>
+            </div>
+
+            <div class="card" onclick="kutu4Ac()">
+                <div class="icon">💌</div>
+                <h3>Mektup</h3>
+                <p>Sana yazdım…</p>
+            </div>
+
+            <div class="card" onclick="kutu5Ac()">
+                <div class="icon" id="music-icon">🎶</div> 
+                <h3>Bizim Şarkımız</h3>
+                <p>Dinlemek için dokun</p>
+                <img id="plak-img" src="assets/plak.jng" alt="Plak" style="width: 50px; display: none; margin: 5px auto; border-radius: 50%;">
+            </div>
+            
+            <div class="card" onclick="kutu7Ac()">
+                <div class="icon">🌷</div>
+                <h3>Çiçek Bahçesi</h3>
+                <p>Senin için bir bahçe...</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="modal-overlay" class="hidden" onclick="modalKapat()">
+        <div id="modal-content" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="modalKapat()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
