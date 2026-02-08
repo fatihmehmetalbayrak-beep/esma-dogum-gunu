@@ -59,13 +59,15 @@ function kutu3Ac() {
     modalAc("img", AYARLAR.kolajGorseli);
 }
 function kutu4Ac() { modalAc("img", AYARLAR.mektupGorseli); }
+/* script.js - Kutu 5 Güncellemesi */
 function kutu5Ac() {
     const plak = document.getElementById("plak-img");
     const ikon = document.getElementById("music-icon");
 
-    // Nesne yoksa oluştur ve kaynağı ata
-    if (!muzikCalar) {
+    // Nesne yoksa sadece buraya tıklandığında (kullanıcı etkileşimiyle) oluştur
+    if (!muzikCalar || muzikCalar.src === "") {
         muzikCalar = new Audio(AYARLAR.sarkiDosyasi);
+        muzikCalar.load(); // Dosyayı çekmeye başla
     }
 
     if (muzikCalar.paused) {
@@ -73,14 +75,15 @@ function kutu5Ac() {
             .then(() => {
                 muzikCaliyorMu = true;
                 if (plak) {
-                    plak.src = AYARLAR.plakGorseli; // Kendi plak görselin
+                    plak.src = AYARLAR.plakGorseli;
                     plak.style.display = "block";
                     plak.classList.add("donen-plak");
                 }
                 if (ikon) ikon.innerHTML = "⏸️";
             })
             .catch(error => {
-                console.log("Müzik için bir tıklama bekleniyor:", error);
+                console.error("Müzik çalınamadı:", error);
+                alert("Müzik dosyasına ulaşılamıyor. Lütfen assets klasöründeki dosya adını kontrol edin.");
             });
     } else {
         muzikCalar.pause();
@@ -238,4 +241,5 @@ function cicekBahcesiniBaslat(canvas, infoText) {
         if (flowers.length > 50) { flowers.shift(); }
     });
 }
+
 
